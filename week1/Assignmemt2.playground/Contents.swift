@@ -20,8 +20,8 @@ let average1:Double = ( x1 + y1) / 2.0
 print(average)
  將type Int 改為使用 Double 存取
  -------------------------------
- 10/3 除數跟被除數都是整數的話，那算出來的結果就會是整數
- 10.0/3.0 幅點數的運算范围更大，可以儲存比整數更精準的數值
+ 10/3 除數跟被除數都是整數的話，算出來的結果就會是整數
+ 10.0/3.0 浮點數的運算範圍更大，可以儲存比整數更精準的數值
  */
 
 //4.
@@ -65,6 +65,6 @@ print(retain)
 
 /*11.var phoneNumber = 0987654321
      phoneNumber = "Hello, world."
-  Answer :phoneNumber 被定義為int,不可將它改變為字串
+  Answer :phoneNumber 被推論型態為int,不可使用String改變他的值
  */
 
