@@ -36,9 +36,6 @@ Gender.male(age: 18).printAge()
 //2.
 class People {
     var pet: Pet?
-//    init(pet: Pet) {
-//        self.pet = pet
-//    }
 }
 
 class Pet {
