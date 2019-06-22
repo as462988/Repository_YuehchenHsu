@@ -16,19 +16,19 @@ class Animal {
 }
 
 //2.
-class Elephnat: Animal{
+class Elephnat: Animal {
     override func eat() {
     print("I eat pineapple")
     }
 }
 
-class Tiger: Animal{
+class Tiger: Animal {
     override func eat() {
    print("I eat meat")
     }
 }
 
-class Horse: Animal{
+class Horse: Animal {
     override func eat() {
     print("I eat wheat")
     }
@@ -50,12 +50,12 @@ zoo.weeklyHot = Horse(gender: .undefind)
 /*4.What have you learned in ​Object-Oriented Swift​ session?
  > struct 與 class 的用法＆相同與不同之處
  > method 的用法 ： method 是關連於某一個 class (或 struct, enum)的 function
- > class 的 繼承方法，包括 override 覆蓋原有的特性。
+ > class 的繼承方法，包括 override 如何覆蓋原有的特性。
 */
 
 /*5.What’s the difference between ​Struct​ and ​Class
- class 是 reference type ，有讓一個class繼承另一個class的特性
- struct 是 value type ， struct 有預設的建構值class 沒有，在建構 class 時需要初始化建構值。
+ class 是 reference type ，有讓一個 class 繼承另一個 class 的特性
+ struct 是 value type ， struct 有預設的建構值 class 沒有，在建構 class 時需要初始化建構值。
  */
 
 /*6.What’s the difference between ​instance method​ and ​type method
