@@ -4,7 +4,7 @@ enum Gasoline: String {
     case oil95 = "95"
     case oil98 = "98"
 }
-func getPrice(price: Gasoline) {
+func getPrice() {
     switch price {
     case Gasoline.oil92:
         "This oil price is 27 "

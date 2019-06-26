@@ -10,7 +10,7 @@ myFriends += ["Ian", "Bomi", "Kevin"]
 
 //3.Oops,I forget to add ‘Michael’ who is one of my best friend, please help me to add Michael to the end of ​myFriends​ array.
 myFriends.append("Michael")
-
+ㄐ˙
 /* append 與 insert 的差別
  append 是一以追加的方式新增資料，新增後資料會顯示在最後一筆; insert 是用插入的方式新增資料，需要給他要插入的位置，且插入後原本的陣列順序也會跟著改變。
  */
