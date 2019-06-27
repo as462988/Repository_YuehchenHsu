@@ -148,7 +148,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kN-Rb-6rl"/>
+                                    <action selector="submitButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Dw-90-dLF"/>
                                 </connections>
                             </button>
                         </subviews>
