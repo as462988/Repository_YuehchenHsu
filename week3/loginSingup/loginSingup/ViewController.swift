@@ -14,12 +14,15 @@ enum FormStatus {
 }
 
 enum CheckError: Error {
-    case loginFail
-    case accountEmpty
-    case passwordEmpty
-    case checkwordEmpty
-    case checkTextFail
+    case loginFail(msg: String)
+    case accountEmpty(msg: String)
+    case passwordEmpty(msg: String)
+    case checkwordEmpty(msg: String)
+    case checkTextFail(msg: String)
 }
+
+let sharedAccount: String = "appwork_school@gmail.com"
+let sharedPassword: String = "1234"
 
 class ViewController: UIViewController {
     @IBOutlet weak var controlSeg: UISegmentedControl!
@@ -68,87 +71,74 @@ class ViewController: UIViewController {
             break
         }
     }
-    
-    func submit(accountText: String, passwordText: String, checkText: String?) throws {
+    func submit() throws {
         
         guard accountTextField.text?.isEmpty == false else {
-            throw CheckError.accountEmpty
+            throw CheckError.accountEmpty(msg: "Account should not be empty")
         }
         
         guard passwordTextField.text?.isEmpty == false else {
-            throw CheckError.passwordEmpty
+            throw CheckError.passwordEmpty(msg: "Password should not be empty")
         }
         
-        guard accountText == accountTextField.text && passwordText == passwordTextField.text else {
-            throw CheckError.loginFail
+        switch formStatus {
+        case .login:
+            guard sharedAccount == accountTextField.text && sharedPassword == passwordTextField.text else {
+                throw CheckError.loginFail(msg: "Login fail")
+            }
+            
+        case .singup:
+            guard checkTextField.text?.isEmpty == false else {
+                throw CheckError.checkwordEmpty(msg: "Check Password should not be empty")
+            }
+            
+            guard checkTextField.text == passwordTextField.text else {
+                throw CheckError.checkTextFail(msg: "Singup fail")
+            }
         }
-        
-        guard checkTextField.text?.isEmpty == false else {
-            throw CheckError.checkwordEmpty
-        }
-        
-        guard checkTextField.text == passwordTextField.text else {
-            throw CheckError.checkTextFail
-        }
-        
     }
     
-
+    func alert(msg: String) {
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: IBAction
     @IBAction func submitButton(_ sender: UIButton) {
         switch formStatus {
         case .login:
             do {
-                try submit(accountText: "appwork_school@gmail.com", passwordText: "1234", checkText: nil)
+                try submit()
             }
-            catch CheckError.accountEmpty{
-                let accountEmpty = UIAlertController(title: "Error", message: "Account should not be empty", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                accountEmpty.addAction(okAction)
-                present(accountEmpty, animated: true, completion: nil)
+            catch CheckError.accountEmpty(let msg){
+               alert(msg: msg)
             }
-            catch CheckError.passwordEmpty {
-                let passwordEmpty = UIAlertController(title: "Error", message: "Password should not be empty", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                passwordEmpty.addAction(okAction)
-                present(passwordEmpty, animated: true, completion: nil)
+            catch CheckError.passwordEmpty(let msg) {
+              alert(msg: msg)
             }
-            catch CheckError.loginFail {
-                let errorAccount = UIAlertController(title: "Error", message: "Login fail", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                errorAccount.addAction(okAction)
-                present(errorAccount, animated: true, completion: nil)
+            catch CheckError.loginFail(let msg){
+                alert(msg: msg)
             }catch{
                 print("error")
             }
         case .singup:
             do {
-                try submit(accountText: accountTextField.text! , passwordText: passwordTextField.text!, checkText: checkTextField.text)
-            }catch CheckError.accountEmpty{
-                let accountEmpty = UIAlertController(title: "Error", message: "Account should not be empty", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                accountEmpty.addAction(okAction)
-                present(accountEmpty, animated: true, completion: nil)
+                try submit()
+            }catch CheckError.accountEmpty(let msg){
+                alert(msg: msg)
             }
-            catch CheckError.passwordEmpty {
-                let passwordEmpty = UIAlertController(title: "Error", message: "Password should not be empty", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                passwordEmpty.addAction(okAction)
-                present(passwordEmpty, animated: true, completion: nil)
+            catch CheckError.passwordEmpty(let msg) {
+                alert(msg: msg)
             }
-            catch CheckError.checkwordEmpty{
-                let checkEmpty = UIAlertController(title: "Error", message: "Check Password should not be empty", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                checkEmpty.addAction(okAction)
-                present(checkEmpty, animated: true, completion: nil)
-            }catch CheckError.checkTextFail{
-                let checkFail = UIAlertController(title: "Error", message: "Singup fail", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                checkFail.addAction(okAction)
-                present(checkFail, animated: true, completion: nil)
+            catch CheckError.checkwordEmpty(let msg){
+                alert(msg: msg)
+            }catch CheckError.checkTextFail(let msg){
+               alert(msg: msg)
             }catch{
                 print("error")
             }
-            return
         }
     }
 }
