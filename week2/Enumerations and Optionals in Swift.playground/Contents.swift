@@ -3,16 +3,26 @@ enum Gasoline: String {
     case oil92 = "92"
     case oil95 = "95"
     case oil98 = "98"
+    
+    func getPrice() {
+        switch self {
+        case Gasoline.oil92:
+            "This oil price is 27 "
+        case Gasoline.oil95:
+            "This oil price is 28.5 "
+        case Gasoline.oil98:
+            "This oil price is 30.5 "
+        }
 }
-func getPrice() {
-    switch price {
-    case Gasoline.oil92:
-        "This oil price is 27 "
-    case Gasoline.oil95:
-        "This oil price is 28.5 "
-    case Gasoline.oil98:
-        "This oil price is 30.5 "
-    }
+//func getPrice(price: Gasoline) {
+//    switch price {
+//    case Gasoline.oil92:
+//        "This oil price is 27 "
+//    case Gasoline.oil95:
+//        "This oil price is 28.5 "
+//    case Gasoline.oil98:
+//        "This oil price is 30.5 "
+//    }
 }
 print(Gasoline.oil92.rawValue)
 /*Please explain what is enum ​associate value​ and how it works
